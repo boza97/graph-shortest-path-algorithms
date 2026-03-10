@@ -7,8 +7,9 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
 
-public class BFSShortestPath {
+public class BFSShortestPath implements ShortestPathAlgorithm {
 
+    @Override
     public int[] compute(Graph graph, int source) {
         int V = graph.getVertices();
         if (source < 0 || source >= V) {

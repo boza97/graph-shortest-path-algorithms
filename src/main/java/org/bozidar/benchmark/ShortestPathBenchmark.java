@@ -1,6 +1,8 @@
 package org.bozidar.benchmark;
 
-import org.bozidar.algorithm.BFSShortestPath;
+import org.bozidar.algorithm.ShortestPathAlgorithm;
+import org.bozidar.algorithm.factory.ShortestPathFactory;
+import org.bozidar.algorithm.model.AlgorithmType;
 import org.bozidar.generator.GraphGenerator;
 import org.bozidar.model.Graph;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -18,31 +20,38 @@ import org.openjdk.jmh.annotations.Warmup;
 
 import java.util.concurrent.TimeUnit;
 
+@State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@State(Scope.Thread)
-@Warmup(iterations = 2)
-@Measurement(iterations = 3)
-@Fork(1)
-public class BFSBenchmark {
+@Warmup(iterations = 3)
+@Measurement(iterations = 5)
+@Fork(2)
+public class ShortestPathBenchmark {
+
+    @Param({"BFS", "DIJKSTRA", "BELLMAN_FORD"})
+    public AlgorithmType algorithmType;
 
     @Param({"10000", "20000", "40000"})
     public int vertices;
 
-    public int edges;
-
     private Graph graph;
-    private BFSShortestPath bfs;
+    private ShortestPathAlgorithm algorithm;
 
     @Setup(Level.Trial)
     public void setup() {
-        edges = vertices * 3;
-        graph = GraphGenerator.randomDirectedUnweighted(vertices, edges, 12345L);
-        bfs = new BFSShortestPath();
+        int edges = vertices * 3;
+        graph = GraphGenerator.generateDAG(
+                vertices,
+                edges,
+                algorithmType.requiresWeightedGraph(),
+                algorithmType.shouldAllowNegativeWeights(),
+                12345L
+        );
+        algorithm = ShortestPathFactory.create(algorithmType);
     }
 
     @Benchmark
-    public int[] bfsShortestPath() {
-        return bfs.compute(graph, 0);
+    public int[] shortestPath() {
+        return algorithm.compute(graph, 0);
     }
 }
