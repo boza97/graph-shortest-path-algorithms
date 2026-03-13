@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class BellmanFordShortestPath implements ShortestPathAlgorithm {
 
-    @Override public int[] compute(Graph graph, int source) {
-
+    @Override
+    public int[] compute(Graph graph, int source) {
         int V = graph.getVertices();
         int[] result = new int[V];
 
@@ -16,7 +16,7 @@ public class BellmanFordShortestPath implements ShortestPathAlgorithm {
         result[source] = 0;
 
         for (int i = 0; i < V - 1; i += 1) {
-            boolean updaated = false;
+            boolean updated = false;
 
             for (int u = 0; u < V; u += 1) {
                 if (result[u] == Integer.MAX_VALUE) {
@@ -29,12 +29,12 @@ public class BellmanFordShortestPath implements ShortestPathAlgorithm {
 
                     if (result[u] + w < result[v]) {
                         result[v] = result[u] + w;
-                        updaated = true;
+                        updated = true;
                     }
                 }
             }
 
-            if (!updaated) {
+            if (!updated) {
                 break;
             }
         }

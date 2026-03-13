@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(2)
 public class ShortestPathBenchmark {
 
-    @Param({"BFS", "DIJKSTRA", "BELLMAN_FORD"})
+    @Param({"BFS", "DIJKSTRA", "BELLMAN_FORD", "DAG"})
     public AlgorithmType algorithmType;
 
     @Param({"10000", "20000", "40000"})

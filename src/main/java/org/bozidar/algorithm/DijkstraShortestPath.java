@@ -11,7 +11,6 @@ public class DijkstraShortestPath implements ShortestPathAlgorithm {
 
     @Override
     public int[] compute(Graph graph, int source) {
-
         int V = graph.getVertices();
         int[] result = new int[V];
         Arrays.fill(result, Integer.MAX_VALUE);
