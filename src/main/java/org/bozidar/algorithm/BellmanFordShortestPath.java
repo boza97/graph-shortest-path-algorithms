@@ -39,6 +39,21 @@ public class BellmanFordShortestPath implements ShortestPathAlgorithm {
             }
         }
 
+        for (int u = 0; u < V; u += 1) {
+            if (result[u] == Integer.MAX_VALUE) {
+                continue;
+            }
+
+            for (Edge edge : graph.neighbors(u)) {
+                int v = edge.getTo();
+                int w = edge.getWeight();
+
+                if (result[u] + w < result[v]) {
+                    throw new IllegalStateException("Negative cycle detected");
+                }
+            }
+        }
+
         return result;
     }
 }

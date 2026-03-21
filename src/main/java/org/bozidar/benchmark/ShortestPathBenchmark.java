@@ -3,7 +3,7 @@ package org.bozidar.benchmark;
 import org.bozidar.algorithm.ShortestPathAlgorithm;
 import org.bozidar.algorithm.factory.ShortestPathFactory;
 import org.bozidar.algorithm.model.AlgorithmType;
-import org.bozidar.generator.GraphGenerator;
+import org.bozidar.generator.GraphFactory;
 import org.bozidar.model.Graph;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -40,13 +40,7 @@ public class ShortestPathBenchmark {
     @Setup(Level.Trial)
     public void setup() {
         int edges = vertices * 3;
-        graph = GraphGenerator.generateDAG(
-                vertices,
-                edges,
-                algorithmType.requiresWeightedGraph(),
-                algorithmType.shouldAllowNegativeWeights(),
-                12345L
-        );
+        graph = GraphFactory.createGraph(algorithmType, vertices, edges, 12345L);
         algorithm = ShortestPathFactory.create(algorithmType);
     }
 

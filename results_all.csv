@@ -1,0 +1,13 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: algorithmType","Param: vertices"
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,0.866171,0.087366,"ms/op",BFS,10000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,1.880664,0.144748,"ms/op",BFS,20000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,3.884159,0.694382,"ms/op",BFS,40000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,3.836575,1.100967,"ms/op",DIJKSTRA,10000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,9.912720,0.219747,"ms/op",DIJKSTRA,20000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,18.474421,2.514126,"ms/op",DIJKSTRA,40000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,6.032457,1.431844,"ms/op",BELLMAN_FORD,10000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,17.695952,0.319723,"ms/op",BELLMAN_FORD,20000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,40.578584,1.324189,"ms/op",BELLMAN_FORD,40000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,1.848566,0.036226,"ms/op",DAG,10000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,2.322480,0.384676,"ms/op",DAG,20000
+"org.bozidar.benchmark.ShortestPathBenchmark.shortestPath","avgt",1,10,5.503353,0.452306,"ms/op",DAG,40000
